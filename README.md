@@ -38,6 +38,7 @@ Post = Astronomy.Class({
 
 We can also pass options to behavior, if it accepts any.
 
+```js
 Post = Astronomy.Class({
   name: 'Post',
   collection: Posts,
@@ -47,6 +48,7 @@ Post = Astronomy.Class({
     'Timestamp': {}
   }
 });
+```
 
 *Right now passing option to behavior is not implemented. In the future you will be able to tell behavior how it should behave, what fields should it create etc.*
 
