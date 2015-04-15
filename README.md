@@ -179,7 +179,7 @@ The NestedSet behavior is responsible for creating tree structures withing colle
 
 ## Writing behaviors
 
-We will describe process of creating behavior on the simplest one `Timestamp`. In the listing below there is the whole code of this behavior.
+We will describe process of creating behavior on the example of `Timestamp` behavior. There is a whole code of this behavior in the listing below.
 
 ```js
 Astronomy.Behavior({
