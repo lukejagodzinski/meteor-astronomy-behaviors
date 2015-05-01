@@ -1,6 +1,6 @@
 Package.describe({
   summary: 'Behaviors for Meteor Astronomy',
-  version: '0.1.0',
+  version: '0.1.1',
   name: 'jagi:astronomy-behaviors',
   git: 'https://github.com/jagi/meteor-astronomy-behaviors.git'
 });
