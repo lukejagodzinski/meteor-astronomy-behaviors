@@ -48,7 +48,7 @@ Post = Astronomy.Class({
   collection: Posts,
   transform: true,
   fields: ['title'],
-  behaviors: ['Timestamp']
+  behaviors: ['timestamp']
 });
 ```
 
@@ -61,12 +61,12 @@ Post = Astronomy.Class({
   transform: true,
   fields: ['title'],
   behaviors: {
-    'Timestamp': {}
+    'timestamp': {
+      createdFieldName: 'created'
+    }
   }
 });
 ```
-
-*Right now passing option to behavior is not implemented. In the future you will be able to tell behavior how it should behave, what fields should it create etc.*
 
 ## Behaviors
 
@@ -195,27 +195,47 @@ The NestedSet behavior is responsible for creating tree structures within collec
 
 ## Writing behaviors
 
-We will describe process of creating behavior on the example of `Timestamp` behavior. There is a whole code of this behavior in the listing below.
+We will describe process of creating a behavior on the example of the simplified `timestamp` behavior.
 
 ```js
 Astronomy.Behavior({
-  name: 'Timestamp',
-  fields: {
-    createdAt: null,
-    updatedAt: null
+  name: 'timestamp',
+  aliases: ['time'], // Add some aliases.
+  init: function(behaviorData) {
+    // Here, we can do something with the behavior data (options) sent to
+    // behavior in the class schema definition. In the "timestamp" behavior
+    // we can override here names of the "createdAt" and "updatedAt" fields.
+    // However, we have here simplified version of this behavior.
   },
-  events: {
-    beforeInsert: function() {
-      this.createdAt = new Date();
-    },
-    beforeUpdate: function() {
-      this.updatedAt = new Date();
-    }
+  initSchema: function() {
+    // Add fields to the schema.
+    schema.addFields({
+      createdAt: {
+        type: 'date',
+        default: null
+      },
+      updatedAt: {
+        type: 'date',
+        default: null
+      }
+    });
+
+    // Update the "createdAt" and "updatedAt" fields in proper events.
+    schema.addEvents({
+      beforeInsert: function() {
+        this.createdAt = new Date();
+      },
+      beforeUpdate: function() {
+        this.updatedAt = new Date();
+      }
+    });
   }
 });
 ```
 
-As you can see, the behavior definition is similar to the model definition. We have here mandatory `name` attribute and standard attributes of the model definition: `fields`, `methods`, `events`.
+As you can see in the example above we have two functions. The first one "initSchema" is called on the behavior initialization. When developer defines class schema and adds given behavior to the schema definition, he/she can also pass some options. Those options are passed as a first argument of the "initSchema" method.
+
+The second function is "initSchema". It's called in the context of the class schema. In the "timestamp" behavior we add some methods and fields to the schema.
 
 ## Contribution
 
