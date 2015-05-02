@@ -18,8 +18,24 @@ Meteor Astronomy Behaviors is a module for [Meteor Astronomy](https://github.com
 
 ## Installation
 
+You shouldn't add the Meteor Astronomy Behaviors package directly to your project. Instead you should add a package for behavior you want to use. Right now there are three behaviors.
+
+**Timestamp**
+
 ```sh
-$ meteor add jagi:astronomy-behaviors
+$ meteor add jagi:astronomy-timestamp-behavior
+```
+
+**Sort**
+
+```sh
+$ meteor add jagi:astronomy-sort-behavior
+```
+
+**NestedSet**
+
+```sh
+$ meteor add jagi:astronomy-nestedset-behavior
 ```
 
 ## Usage
@@ -117,7 +133,7 @@ post.moveBottom(); // Move to bottom
 
 ### NestedSet
 
-The NestedSet behavior is responsible for creating tree structures withing collection. You can read more about Nested Sets on the [Wikipedia](http://en.wikipedia.org/wiki/Nested_set_model). Behavior provides only one method `getNode` that returns node object that takes care of all tree management. It has many methods but you will use only few of them.
+The NestedSet behavior is responsible for creating tree structures within collection. You can read more about Nested Sets on the [Wikipedia](http://en.wikipedia.org/wiki/Nested_set_model). Behavior provides only one method `getNode` that returns node object that takes care of all tree management. It has many methods but you will use only few of them.
 
 `getDoc`
 
