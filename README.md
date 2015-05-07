@@ -46,7 +46,6 @@ Let's see how to add behavior to our model.
 Post = Astronomy.Class({
   name: 'Post',
   collection: Posts,
-  transform: true,
   fields: ['title'],
   behaviors: ['timestamp']
 });
@@ -58,7 +57,6 @@ We can also pass options to behavior, if it accepts any.
 Post = Astronomy.Class({
   name: 'Post',
   collection: Posts,
-  transform: true,
   fields: ['title'],
   behaviors: {
     'timestamp': {
@@ -124,7 +122,7 @@ Astronomy.Behavior({
 });
 ```
 
-As you can see in the example above we have two functions. The first one "initSchema" is called on the behavior initialization. When developer defines class schema and adds given behavior to the schema definition, he/she can also pass some options. Those options are passed as a first argument of the "initSchema" method.
+As you can see in the example above we have two functions. The first one "init" is called on the behavior initialization. When developer defines class schema and adds given behavior to the schema definition, he/she can also pass some options. Those options are passed as a first argument of the "init" method.
 
 The second function is "initSchema". It's called in the context of the class schema. In the "timestamp" behavior we add some methods and fields to the schema.
 

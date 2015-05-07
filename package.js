@@ -1,6 +1,6 @@
 Package.describe({
   summary: 'Behaviors for Meteor Astronomy',
-  version: '0.2.0',
+  version: '0.3.0',
   name: 'jagi:astronomy-behaviors',
   git: 'https://github.com/jagi/meteor-astronomy-behaviors.git'
 });
@@ -8,7 +8,7 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.1.0.2');
 
-  api.use('jagi:astronomy@0.4.1');
+  api.use('jagi:astronomy@0.5.0');
   api.use('underscore');
 
   api.imply('jagi:astronomy');
