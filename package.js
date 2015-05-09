@@ -1,6 +1,6 @@
 Package.describe({
   summary: 'Behaviors for Meteor Astronomy',
-  version: '0.3.0',
+  version: '0.3.1',
   name: 'jagi:astronomy-behaviors',
   git: 'https://github.com/jagi/meteor-astronomy-behaviors.git'
 });
@@ -15,7 +15,8 @@ Package.onUse(function(api) {
 
   // Module.
   api.addFiles('lib/module/global.js', ['client', 'server']);
-  api.addFiles('lib/module/schema.js', ['client', 'server']);
   api.addFiles('lib/module/behavior.js', ['client', 'server']);
+  api.addFiles('lib/module/init_module.js', ['client', 'server']);
+  api.addFiles('lib/module/init_schema.js', ['client', 'server']);
   api.addFiles('lib/module/module.js', ['client', 'server']);
 });
