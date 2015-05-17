@@ -90,15 +90,15 @@ We will describe process of creating a behavior on the example of the simplified
 Astronomy.Behavior({
   name: 'timestamp',
   aliases: ['time'], // Add some aliases.
-  init: function(behaviorData) {
+  oninitbehavior: function(behaviorData) {
     // Here, we can do something with the behavior data (options) sent to
     // behavior in the class schema definition. In the "timestamp" behavior
     // we can override here names of the "createdAt" and "updatedAt" fields.
     // However, we have here simplified version of this behavior.
   },
-  initSchema: function() {
-    // Add fields to the schema.
-    schema.addFields({
+  oninitclass: function(Class) {
+    // Add fields to the Class.
+    Class.addFields({
       createdAt: {
         type: 'date',
         default: null
@@ -110,7 +110,7 @@ Astronomy.Behavior({
     });
 
     // Update the "createdAt" and "updatedAt" fields in proper events.
-    schema.addEvents({
+    Class.addEvents({
       beforeInsert: function() {
         this.createdAt = new Date();
       },
@@ -122,9 +122,9 @@ Astronomy.Behavior({
 });
 ```
 
-As you can see in the example above we have two functions. The first one "init" is called on the behavior initialization. When developer defines class schema and adds given behavior to the schema definition, he/she can also pass some options. Those options are passed as a first argument of the "init" method.
+As you can see in the example above we have two functions. The first one "oninitbehavior" is called on the behavior initialization. When developer defines class schema and adds given behavior to the schema definition, he/she can also pass some options. Those options are passed as a first argument of the "oninitbehavior" method.
 
-The second function is "initSchema". It's called in the context of the class schema. In the "timestamp" behavior we add some methods and fields to the schema.
+The second function is "oninitclass". It's called in the context of the module and the first and only argument is class object. In the "timestamp" behavior we add some methods and fields to the class in this method.
 
 ## Contribution
 
