@@ -1,4 +1,4 @@
-# Meteor Astronomy Behaviors
+# Astronomy Behaviors for Meteor
 
 **Table of Contents**
 - [About](#about)
@@ -14,11 +14,11 @@
 
 ## About
 
-Meteor Astronomy Behaviors is a module for [Meteor Astronomy](https://github.com/jagi/meteor-astronomy) package that introduces behaviors feature into you model. Behaviors are nice way of reusing your code for more than one model. If you have similar features in two or more schemas, you should consider creating behavior for such feature. An example of good behavior can be `createdAt` and `updateAt` fields which should be filled with the current date on document save and on every document update. And it's why we've created `Timestamp` behavior for that.
+Astronomy Behaviors is a module for [Meteor Astronomy](https://github.com/jagi/meteor-astronomy) package that introduces behaviors feature into you model. Behaviors are nice way of reusing your code for more than one model. If you have similar features in two or more classes, you should consider creating behavior for such feature. An example of good behavior can be `createdAt` and `updateAt` fields which should be filled with the current date on document save and on every document update. And it's why we've created `Timestamp` behavior for that.
 
 ## Installation
 
-You shouldn't add the Meteor Astronomy Behaviors package directly to your project. Instead you should add a package for behavior you want to use. Right now there are three behaviors.
+You shouldn't add the Astronomy Behaviors package directly to your project. Instead you should add a package for behavior you want to use. Right now there are three behaviors.
 
 **Timestamp**
 
