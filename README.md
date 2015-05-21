@@ -43,7 +43,7 @@ $ meteor add jagi:astronomy-nestedset-behavior
 Let's see how to add behavior to our model.
 
 ```js
-Post = Astronomy.Class({
+Post = Astro.Class({
   name: 'Post',
   collection: Posts,
   fields: ['title'],
@@ -54,7 +54,7 @@ Post = Astronomy.Class({
 We can also pass options to behavior, if it accepts any.
 
 ```js
-Post = Astronomy.Class({
+Post = Astro.Class({
   name: 'Post',
   collection: Posts,
   fields: ['title'],
@@ -87,9 +87,8 @@ You can read more about this behavior in the behavior's [repo](https://github.co
 We will describe process of creating a behavior on the example of the simplified `timestamp` behavior.
 
 ```js
-Astronomy.Behavior({
+Astro.createBehavior({
   name: 'timestamp',
-  aliases: ['time'], // Add some aliases.
   oninitbehavior: function(behaviorData) {
     // Here, we can do something with the behavior data (options) sent to
     // behavior in the class schema definition. In the "timestamp" behavior
