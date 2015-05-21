@@ -1,4 +1,4 @@
-# Astronomy Behaviors for Meteor
+# Behaviors module for Meteor Astronomy
 
 **Table of Contents**
 - [About](#about)
@@ -6,8 +6,8 @@
 - [Usage](#usage)
 - [Behaviors](#behaviors)
   - [Timestamp](#timestamp)
+  - [Slug](#slug)
   - [Sort](#sort)
-  - [NestedSet](#nested-set)
 - [Writing behaviors](#writing-behaviors)
 - [Contribution](#contribution)
 - [License](#license)
@@ -26,16 +26,16 @@ You shouldn't add the Astronomy Behaviors package directly to your project. Inst
 $ meteor add jagi:astronomy-timestamp-behavior
 ```
 
+**Slug**
+
+```sh
+$ meteor add jagi:astronomy-slug-behavior
+```
+
 **Sort**
 
 ```sh
 $ meteor add jagi:astronomy-sort-behavior
-```
-
-**NestedSet**
-
-```sh
-$ meteor add jagi:astronomy-nestedset-behavior
 ```
 
 ## Usage
@@ -74,13 +74,13 @@ Right now, there are three behaviors (more to come) [NestedSet](#nestedset), [So
 
 You can read more about this behavior in the behavior's [repo](https://github.com/jagi/meteor-astronomy-timestamp-behavior).
 
+### Slug
+
+You can read more about this behavior in the behavior's [repo](https://github.com/jagi/meteor-astronomy-slug-behavior).
+
 ### Sort
 
 You can read more about this behavior in the behavior's [repo](https://github.com/jagi/meteor-astronomy-sort-behavior).
-
-### NestedSet
-
-You can read more about this behavior in the behavior's [repo](https://github.com/jagi/meteor-astronomy-nestedset-behavior).
 
 ## Writing behaviors
 
@@ -89,41 +89,45 @@ We will describe process of creating a behavior on the example of the simplified
 ```js
 Astro.createBehavior({
   name: 'timestamp',
-  oninitbehavior: function(behaviorData) {
-    // Here, we can do something with the behavior data (options) sent to
-    // behavior in the class schema definition. In the "timestamp" behavior
-    // we can override here names of the "createdAt" and "updatedAt" fields.
-    // However, we have here simplified version of this behavior.
-  },
-  oninitclass: function(Class) {
-    // Add fields to the Class.
-    Class.addFields({
-      createdAt: {
-        type: 'date',
-        default: null
-      },
-      updatedAt: {
-        type: 'date',
-        default: null
-      }
-    });
+  events: {
+    addbehavior: function(behaviorData) {
+      var Class = this;
 
-    // Update the "createdAt" and "updatedAt" fields in proper events.
-    Class.addEvents({
-      beforeInsert: function() {
-        this.createdAt = new Date();
-      },
-      beforeUpdate: function() {
-        this.updatedAt = new Date();
-      }
-    });
+      // Add fields to the Class.
+      Class.addFields({
+        createdAt: {
+          type: 'date',
+          default: null
+        },
+        updatedAt: {
+          type: 'date',
+          default: null
+        }
+      });
+
+      // Update the "createdAt" and "updatedAt" fields in proper events.
+      Class.addEvents({
+        beforeInsert: function() {
+          this.createdAt = new Date();
+        },
+        beforeUpdate: function() {
+          this.updatedAt = new Date();
+        }
+      });
+    },
+    initclass: function(schemaDefinition) {},
+    initinstance: function(attrs) {}
   }
 });
 ```
 
-As you can see in the example above we have two functions. The first one "oninitbehavior" is called on the behavior initialization. When developer defines class schema and adds given behavior to the schema definition, he/she can also pass some options. Those options are passed as a first argument of the "oninitbehavior" method.
+As you can see in the example above we have three events.
 
-The second function is "oninitclass". It's called in the context of the module and the first and only argument is class object. In the "timestamp" behavior we add some methods and fields to the class in this method.
+The `addbehavior` event is called on a behavior initialization. When defining behaviors in a class schema, you can pass some options to the behavior. Those options are available as the first argument of the `addbehavior` event handler.
+
+Next event is `initclass`. It's called during a class creation in the context of this class.
+
+The last event is `initinstance`. It's called during an instance creation in the context of this instance.
 
 ## Contribution
 
