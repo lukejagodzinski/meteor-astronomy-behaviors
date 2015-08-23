@@ -17,7 +17,7 @@ Package.onUse(function(api) {
   api.addFiles([
     'lib/module/global.js',
     'lib/module/behavior.js',
-    'lib/module/init_class.js',
-    'lib/module/init_instance.js'
+    'lib/module/create_behavior.js',
+    'lib/module/init_class.js'
   ], ['client', 'server']);
 });
