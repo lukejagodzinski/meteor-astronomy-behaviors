@@ -18,6 +18,7 @@ Package.onUse(function(api) {
     'lib/module/global.js',
     'lib/module/behavior.js',
     'lib/module/create_behavior.js',
+    'lib/module/init_schema.js',
     'lib/module/init_class.js'
   ], ['client', 'server']);
 });
